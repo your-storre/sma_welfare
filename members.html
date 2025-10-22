@@ -29,10 +29,7 @@
         <!-- Main Content -->
         <div class="main-content">
             <div class="topbar">
-                <h1>
-                    <span>👥</span>
-                    Members Management
-                </h1>
+                <h1><span>👥</span> Members Management</h1>
                 <div class="user-menu">
                     <span id="current-date">Loading...</span>
                     <div class="user-info">
@@ -43,110 +40,42 @@
             </div>
 
             <div class="content-area">
-                <!-- Action Buttons -->
                 <div class="action-buttons">
                     <button class="btn" id="add-member-btn">
-                        <span>➕</span>
-                        Add New Member
+                        <span>➕</span> Add New Member
                     </button>
-                    <button class="btn btn-outline">
-                        <span>📤</span>
-                        Export Members
-                    </button>
-                    <button class="btn btn-outline">
-                        <span>🔄</span>
-                        Refresh Data
+                    <button class="btn btn-outline" id="refresh-btn">
+                        <span>🔄</span> Refresh Data
                     </button>
                 </div>
 
-                <!-- Search and Filter -->
                 <div class="table-container">
                     <div class="table-header">
                         <div class="table-title">All Members</div>
                         <div class="search-filter">
                             <div class="search-box">
                                 <span class="search-icon">🔍</span>
-                                <input type="text" class="form-control" placeholder="Search members...">
+                                <input type="text" id="search-member" class="form-control" placeholder="Search members...">
                             </div>
-                            <select class="form-control">
-                                <option>All Status</option>
-                                <option>Paid</option>
-                                <option>Unpaid</option>
-                                <option>Partial</option>
-                            </select>
                         </div>
                     </div>
-                    <table>
+                    <table id="members-table">
                         <thead>
                             <tr>
                                 <th>Name</th>
                                 <th>Member ID</th>
                                 <th>Phone</th>
-                                <th>Jan</th>
-                                <th>Feb</th>
-                                <th>Mar</th>
-                                <th>Total</th>
+                                <th>Join Date</th>
+                                <th>Contribution</th>
                                 <th>Status</th>
-                                <th>Actions</th>
                             </tr>
                         </thead>
-                        <tbody>
-                            <tr>
-                                <td>Kwame Mensah</td>
-                                <td>SMW001</td>
-                                <td>+233 24 123 4567</td>
-                                <td>✅</td>
-                                <td>✅</td>
-                                <td>❌</td>
-                                <td>₵ 200.00</td>
-                                <td><span class="status-badge status-partial">Partial</span></td>
-                                <td>
-                                    <div class="action-icons">
-                                        <div class="action-icon" title="Edit">🖋</div>
-                                        <div class="action-icon" title="Delete">🗑</div>
-                                        <div class="action-icon" title="View">👁</div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Ama Serwaa</td>
-                                <td>SMW002</td>
-                                <td>+233 20 987 6543</td>
-                                <td>✅</td>
-                                <td>✅</td>
-                                <td>✅</td>
-                                <td>₵ 300.00</td>
-                                <td><span class="status-badge status-paid">Paid</span></td>
-                                <td>
-                                    <div class="action-icons">
-                                        <div class="action-icon" title="Edit">🖋</div>
-                                        <div class="action-icon" title="Delete">🗑</div>
-                                        <div class="action-icon" title="View">👁</div>
-                                    </div>
-                                </td>
-                            </tr>
-                            <tr>
-                                <td>Kofi Asante</td>
-                                <td>SMW003</td>
-                                <td>+233 54 111 2233</td>
-                                <td>✅</td>
-                                <td>❌</td>
-                                <td>❌</td>
-                                <td>₵ 100.00</td>
-                                <td><span class="status-badge status-unpaid">Unpaid</span></td>
-                                <td>
-                                    <div class="action-icons">
-                                        <div class="action-icon" title="Edit">🖋</div>
-                                        <div class="action-icon" title="Delete">🗑</div>
-                                        <div class="action-icon" title="View">👁</div>
-                                    </div>
-                                </td>
-                            </tr>
+                        <tbody id="members-body">
+                            <tr><td colspan="6" style="text-align:center;">Loading members...</td></tr>
                         </tbody>
                     </table>
                 </div>
 
-                <!-- Footer -->
                 <div class="footer">
                     © 2025 Sunyani Municipal Welfare System • Version 2.0
                 </div>
@@ -198,9 +127,83 @@
     </div>
 
     <script type="module">
-        import './js/firebase.js';
-        import authManager from './js/auth.js';
-        import './js/members.js';
+        import { db } from './js/firebase.js';
+        import { ref, push, onValue } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-database.js";
+
+        const modal = document.getElementById('add-member-modal');
+        const addBtn = document.getElementById('add-member-btn');
+        const cancelBtns = document.querySelectorAll('#cancel-member-btn');
+        const saveBtn = document.getElementById('save-member-btn');
+        const tableBody = document.getElementById('members-body');
+
+        // Open and close modal
+        addBtn.onclick = () => modal.style.display = 'flex';
+        cancelBtns.forEach(btn => btn.onclick = () => modal.style.display = 'none');
+
+        function generateMemberID() {
+            return "SMW" + Math.floor(Math.random() * 10000).toString().padStart(4, "0");
+        }
+
+        // Save member
+        saveBtn.onclick = async () => {
+            const name = document.getElementById('member-name').value.trim();
+            const phone = document.getElementById('member-phone').value.trim();
+            const joinDate = document.getElementById('member-join-date').value;
+            const contribution = document.getElementById('member-contribution').value;
+
+            if (!name || !phone || !joinDate || !contribution) {
+                alert("Please fill all required fields");
+                return;
+            }
+
+            const memberData = {
+                name,
+                phone,
+                joinDate,
+                contribution: parseFloat(contribution),
+                memberId: generateMemberID(),
+                status: "Active",
+                createdAt: new Date().toISOString()
+            };
+
+            try {
+                const membersRef = ref(db, "members");
+                await push(membersRef, memberData);
+                alert("✅ Member registered successfully!");
+                modal.style.display = "none";
+                document.getElementById("add-member-form").reset();
+            } catch (err) {
+                alert("❌ Error saving member: " + err.message);
+            }
+        };
+
+        // Load members from Firebase Realtime Database
+        function loadMembers() {
+            const membersRef = ref(db, "members");
+            onValue(membersRef, (snapshot) => {
+                if (!snapshot.exists()) {
+                    tableBody.innerHTML = "<tr><td colspan='6' style='text-align:center;'>No members found</td></tr>";
+                    return;
+                }
+
+                const data = snapshot.val();
+                tableBody.innerHTML = "";
+                Object.values(data).forEach(m => {
+                    const row = `
+                        <tr>
+                            <td>${m.name}</td>
+                            <td>${m.memberId}</td>
+                            <td>${m.phone}</td>
+                            <td>${m.joinDate}</td>
+                            <td>₵${m.contribution.toFixed(2)}</td>
+                            <td><span class="status-badge status-paid">${m.status}</span></td>
+                        </tr>`;
+                    tableBody.innerHTML += row;
+                });
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', loadMembers);
     </script>
 </body>
 </html>
