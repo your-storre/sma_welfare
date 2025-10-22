@@ -1,7 +1,7 @@
-// Import the functions you need from the SDKs you need
+// Import the functions you need from the Firebase SDKs
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-import { getAnalytics } from "firebase/analytics";
-import { getFirestore } from "firebase/firestore";
+import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-analytics.js";
+import { getFirestore } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 import { getAuth, signInWithEmailAndPassword, signOut } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
 
 // Your web app's Firebase configuration
@@ -27,9 +27,9 @@ try {
     auth = getAuth(app);
     db = getFirestore(app);
     analytics = getAnalytics(app);
-    console.log('Firebase initialized successfully');
+    console.log('✅ Firebase initialized successfully');
 } catch (error) {
-    console.error('Firebase initialization error:', error);
+    console.error('❌ Firebase initialization error:', error);
 }
 
 // Default admin credentials
