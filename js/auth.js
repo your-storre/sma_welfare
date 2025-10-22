@@ -1,4 +1,4 @@
-import { authService, ADMIN_CREDENTIALS } from './js/firebase.js';
+import { authService, ADMIN_CREDENTIALS } from './firebase.js';
 
 class AuthManager {
     constructor() {
