@@ -1,0 +1,242 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reports - Sunyani Municipal Welfare System</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <h2>SUNYANI MUNICIPAL WELFARE</h2>
+            </div>
+            <ul class="sidebar-menu">
+                <li><a href="dashboard.html"><i>📊</i> <span>Dashboard</span></a></li>
+                <li><a href="members.html"><i>👥</i> <span>Members</span></a></li>
+                <li><a href="contributions.html"><i>💰</i> <span>Contributions</span></a></li>
+                <li><a href="withdrawals.html"><i>💸</i> <span>Withdrawals</span></a></li>
+                <li><a href="reminders.html"><i>🔔</i> <span>Reminders</span></a></li>
+                <li><a href="reports.html" class="active"><i>📈</i> <span>Reports</span></a></li>
+                <li><a href="settings.html"><i>⚙️</i> <span>Settings</span></a></li>
+                <li><a href="#" id="logout-btn"><i>🚪</i> <span>Logout</span></a></li>
+            </ul>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <div class="topbar">
+                <h1>
+                    <span>📈</span>
+                    Reports and Analytics
+                </h1>
+                <div class="user-menu">
+                    <span id="current-date">Loading...</span>
+                    <div class="user-info">
+                        <div class="user-avatar">A</div>
+                        <span class="user-email">admin@sma</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-area">
+                <!-- Report Filters -->
+                <div class="form-container">
+                    <h3>Generate Report</h3>
+                    <form id="report-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="report-type">Report Type</label>
+                                <select id="report-type" class="form-control">
+                                    <option value="monthly">Monthly Contributions</option>
+                                    <option value="yearly">Yearly Summary</option>
+                                    <option value="member">Member Performance</option>
+                                    <option value="financial">Financial Statement</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="report-period">Period</label>
+                                <select id="report-period" class="form-control">
+                                    <option value="2025-03">March 2025</option>
+                                    <option value="2025-02">February 2025</option>
+                                    <option value="2025-01">January 2025</option>
+                                    <option value="2024">Year 2024</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="action-buttons">
+                            <button type="submit" class="btn">
+                                <span>📊</span>
+                                Generate Report
+                            </button>
+                            <button type="button" class="btn btn-success" id="export-csv-btn">
+                                <span>📥</span>
+                                Export CSV
+                            </button>
+                            <button type="button" class="btn btn-danger" id="export-pdf-btn">
+                                <span>📄</span>
+                                Download PDF
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Report Summary Cards -->
+                <div class="card-container">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title">Total Contributions</div>
+                            <div class="card-icon">💰</div>
+                        </div>
+                        <div class="card-value">₵ 8,500.00</div>
+                        <div class="card-growth">March 2025</div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title">Active Members</div>
+                            <div class="card-icon">👥</div>
+                        </div>
+                        <div class="card-value">119</div>
+                        <div class="card-growth">Paid this month</div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title">Collection Rate</div>
+                            <div class="card-icon">📈</div>
+                        </div>
+                        <div class="card-value">83.8%</div>
+                        <div class="card-growth">Of expected amount</div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title">Avg. Contribution</div>
+                            <div class="card-icon">💵</div>
+                        </div>
+                        <div class="card-value">₵ 71.43</div>
+                        <div class="card-growth">Per active member</div>
+                    </div>
+                </div>
+
+                <!-- Detailed Report Table -->
+                <div class="table-container">
+                    <div class="table-header">
+                        <div class="table-title">Monthly Contributions Report - March 2025</div>
+                    </div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Member Name</th>
+                                <th>Member ID</th>
+                                <th>Expected</th>
+                                <th>Paid</th>
+                                <th>Balance</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Kwame Mensah</td>
+                                <td>SMW001</td>
+                                <td>₵ 100.00</td>
+                                <td>₵ 100.00</td>
+                                <td>₵ 0.00</td>
+                                <td><span class="status-badge status-paid">Paid</span></td>
+                            </tr>
+                            <tr>
+                                <td>Ama Serwaa</td>
+                                <td>SMW002</td>
+                                <td>₵ 100.00</td>
+                                <td>₵ 100.00</td>
+                                <td>₵ 0.00</td>
+                                <td><span class="status-badge status-paid">Paid</span></td>
+                            </tr>
+                            <tr>
+                                <td>Kofi Asante</td>
+                                <td>SMW003</td>
+                                <td>₵ 100.00</td>
+                                <td>₵ 50.00</td>
+                                <td>₵ 50.00</td>
+                                <td><span class="status-badge status-partial">Partial</span></td>
+                            </tr>
+                            <tr>
+                                <td>Yaw Boateng</td>
+                                <td>SMW004</td>
+                                <td>₵ 100.00</td>
+                                <td>₵ 0.00</td>
+                                <td>₵ 100.00</td>
+                                <td><span class="status-badge status-unpaid">Unpaid</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Footer -->
+                <div class="footer">
+                    © 2025 Sunyani Municipal Welfare System • Version 2.0
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        import './js/firebase.js';
+        import authManager from './js/auth.js';
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            // Update current date
+            const updateDateTime = () => {
+                const now = new Date();
+                const options = { 
+                    weekday: 'long', 
+                    year: 'numeric', 
+                    month: 'long', 
+                    day: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit'
+                };
+                document.getElementById('current-date').textContent = now.toLocaleDateString('en-US', options);
+            };
+            
+            updateDateTime();
+            setInterval(updateDateTime, 60000);
+
+            // Logout functionality
+            const logoutBtn = document.getElementById('logout-btn');
+            if (logoutBtn) {
+                logoutBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    authManager.logout();
+                });
+            }
+
+            // Export functionality
+            const exportCsvBtn = document.getElementById('export-csv-btn');
+            const exportPdfBtn = document.getElementById('export-pdf-btn');
+
+            if (exportCsvBtn) {
+                exportCsvBtn.addEventListener('click', () => {
+                    authManager.showToast('CSV export started...', 'success');
+                });
+            }
+
+            if (exportPdfBtn) {
+                exportPdfBtn.addEventListener('click', () => {
+                    authManager.showToast('PDF download started...', 'success');
+                });
+            }
+
+            // Form submission
+            const form = document.getElementById('report-form');
+            if (form) {
+                form.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    authManager.showToast('Report generated successfully!', 'success');
+                });
+            }
+        });
+    </script>
+</body>
+</html>

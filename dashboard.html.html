@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard - Sunyani Municipal Welfare System</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <h2>SUNYANI MUNICIPAL WELFARE</h2>
+            </div>
+            <ul class="sidebar-menu">
+                <li><a href="dashboard.html" class="active"><i>📊</i> <span>Dashboard</span></a></li>
+                <li><a href="members.html"><i>👥</i> <span>Members</span></a></li>
+                <li><a href="contributions.html"><i>💰</i> <span>Contributions</span></a></li>
+                <li><a href="withdrawals.html"><i>💸</i> <span>Withdrawals</span></a></li>
+                <li><a href="reminders.html"><i>🔔</i> <span>Reminders</span></a></li>
+                <li><a href="reports.html"><i>📈</i> <span>Reports</span></a></li>
+                <li><a href="settings.html"><i>⚙️</i> <span>Settings</span></a></li>
+                <li><a href="#" id="logout-btn"><i>🚪</i> <span>Logout</span></a></li>
+            </ul>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <div class="topbar">
+                <h1>
+                    <span>📊</span>
+                    Dashboard Overview
+                </h1>
+                <div class="user-menu">
+                    <span id="current-date">Loading...</span>
+                    <div class="user-info">
+                        <div class="user-avatar">A</div>
+                        <span class="user-email">admin@sma</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-area">
+                <!-- Summary Cards -->
+                <div class="card-container">
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title">Total Members</div>
+                            <div class="card-icon">👥</div>
+                        </div>
+                        <div class="card-value">142</div>
+                        <div class="card-growth">+5 this month</div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title">Total Funds</div>
+                            <div class="card-icon">💰</div>
+                        </div>
+                        <div class="card-value">₵ 45,280.00</div>
+                        <div class="card-growth">+₵ 2,500 this month</div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title">Unpaid Contributors</div>
+                            <div class="card-icon">❌</div>
+                        </div>
+                        <div class="card-value">23</div>
+                        <div class="card-growth">16% of total</div>
+                    </div>
+                    <div class="card">
+                        <div class="card-header">
+                            <div class="card-title">Last Withdrawal</div>
+                            <div class="card-icon">💸</div>
+                        </div>
+                        <div class="card-value">₵ 5,000.00</div>
+                        <div class="card-growth">2 weeks ago</div>
+                    </div>
+                </div>
+
+                <!-- Chart Placeholder -->
+                <div class="chart-placeholder">
+                    <i>📈</i>
+                    <p>Monthly Contributions Chart</p>
+                    <small>Chart.js integration will display here</small>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="action-buttons">
+                    <a href="members.html?action=add" class="btn">
+                        <span>➕</span>
+                        Add New Member
+                    </a>
+                    <a href="contributions.html?action=add" class="btn">
+                        <span>💰</span>
+                        Record Contribution
+                    </a>
+                    <a href="reports.html" class="btn btn-outline">
+                        <span>📊</span>
+                        Generate Reports
+                    </a>
+                </div>
+
+                <!-- Recent Activity Table -->
+                <div class="table-container">
+                    <div class="table-header">
+                        <div class="table-title">Recent Contributions</div>
+                        <div class="search-filter">
+                            <div class="search-box">
+                                <span class="search-icon">🔍</span>
+                                <input type="text" class="form-control" placeholder="Search contributions...">
+                            </div>
+                        </div>
+                    </div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Member</th>
+                                <th>Amount</th>
+                                <th>Month</th>
+                                <th>Payment Method</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Kwame Mensah</td>
+                                <td>₵ 100.00</td>
+                                <td>January 2025</td>
+                                <td>Mobile Money</td>
+                                <td><span class="status-badge status-paid">Paid</span></td>
+                            </tr>
+                            <tr>
+                                <td>Ama Serwaa</td>
+                                <td>₵ 100.00</td>
+                                <td>January 2025</td>
+                                <td>Cash</td>
+                                <td><span class="status-badge status-paid">Paid</span></td>
+                            </tr>
+                            <tr>
+                                <td>Kofi Asante</td>
+                                <td>₵ 50.00</td>
+                                <td>January 2025</td>
+                                <td>Mobile Money</td>
+                                <td><span class="status-badge status-partial">Partial</span></td>
+                            </tr>
+                            <tr>
+                                <td>Yaw Boateng</td>
+                                <td>₵ 100.00</td>
+                                <td>December 2024</td>
+                                <td>Bank Transfer</td>
+                                <td><span class="status-badge status-paid">Paid</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Footer -->
+                <div class="footer">
+                    © 2025 Sunyani Municipal Welfare System • Version 2.0
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        import './js/firebase.js';
+        import authManager from './js/auth.js';
+        import './js/dashboard.js';
+    </script>
+</body>
+</html>

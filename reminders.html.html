@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reminders - Sunyani Municipal Welfare System</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <h2>SUNYANI MUNICIPAL WELFARE</h2>
+            </div>
+            <ul class="sidebar-menu">
+                <li><a href="dashboard.html"><i>📊</i> <span>Dashboard</span></a></li>
+                <li><a href="members.html"><i>👥</i> <span>Members</span></a></li>
+                <li><a href="contributions.html"><i>💰</i> <span>Contributions</span></a></li>
+                <li><a href="withdrawals.html"><i>💸</i> <span>Withdrawals</span></a></li>
+                <li><a href="reminders.html" class="active"><i>🔔</i> <span>Reminders</span></a></li>
+                <li><a href="reports.html"><i>📈</i> <span>Reports</span></a></li>
+                <li><a href="settings.html"><i>⚙️</i> <span>Settings</span></a></li>
+                <li><a href="#" id="logout-btn"><i>🚪</i> <span>Logout</span></a></li>
+            </ul>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <div class="topbar">
+                <h1>
+                    <span>🔔</span>
+                    Reminders Management
+                </h1>
+                <div class="user-menu">
+                    <span id="current-date">Loading...</span>
+                    <div class="user-info">
+                        <div class="user-avatar">A</div>
+                        <span class="user-email">admin@sma</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-area">
+                <!-- Reminder Settings -->
+                <div class="form-container">
+                    <h3>Reminder Settings</h3>
+                    <form id="reminder-settings-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="reminder-frequency">Reminder Frequency</label>
+                                <select id="reminder-frequency" class="form-control">
+                                    <option value="monthly">Monthly</option>
+                                    <option value="weekly">Weekly</option>
+                                    <option value="daily">Daily</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="reminder-day">Reminder Day of Month</label>
+                                <input type="number" id="reminder-day" class="form-control" min="1" max="28" value="1">
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="reminder-time">Reminder Time</label>
+                                <input type="time" id="reminder-time" class="form-control" value="09:00">
+                            </div>
+                            <div class="form-group">
+                                <label for="reminder-method">Reminder Method</label>
+                                <select id="reminder-method" class="form-control">
+                                    <option value="sms">SMS</option>
+                                    <option value="email">Email</option>
+                                    <option value="both">Both SMS & Email</option>
+                                </select>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="reminder-message">Default Reminder Message</label>
+                            <textarea id="reminder-message" class="form-control" rows="4" placeholder="Enter default reminder message">
+Dear member, this is a friendly reminder that your monthly contribution of ₵100 for [MONTH] [YEAR] is due. Please make your payment by the end of the month. Thank you.
+                            </textarea>
+                        </div>
+                        <div class="action-buttons">
+                            <button type="submit" class="btn">
+                                <span>💾</span>
+                                Save Settings
+                            </button>
+                            <button type="button" class="btn btn-warning" id="test-reminder-btn">
+                                <span>🔔</span>
+                                Send Test Reminder
+                            </button>
+                        </div>
+                    </form>
+                </div>
+
+                <!-- Upcoming Reminders -->
+                <div class="table-container">
+                    <div class="table-header">
+                        <div class="table-title">Upcoming Reminders</div>
+                        <div class="search-filter">
+                            <div class="search-box">
+                                <span class="search-icon">🔍</span>
+                                <input type="text" class="form-control" placeholder="Search reminders...">
+                            </div>
+                        </div>
+                    </div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Scheduled Date</th>
+                                <th>Type</th>
+                                <th>Recipients</th>
+                                <th>Status</th>
+                                <th>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>2025-04-01 09:00</td>
+                                <td>Monthly Contribution</td>
+                                <td>All Members (142)</td>
+                                <td><span class="status-badge status-paid">Scheduled</span></td>
+                                <td>
+                                    <div class="action-icons">
+                                        <div class="action-icon" title="Edit">🖋</div>
+                                        <div class="action-icon" title="Cancel">❌</div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>2025-03-25 10:00</td>
+                                <td>Test Reminder</td>
+                                <td>Admin Only</td>
+                                <td><span class="status-badge status-partial">Pending</span></td>
+                                <td>
+                                    <div class="action-icons">
+                                        <div class="action-icon" title="Edit">🖋</div>
+                                        <div class="action-icon" title="Cancel">❌</div>
+                                    </div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td>2025-03-15 14:00</td>
+                                <td>Overdue Notice</td>
+                                <td>Unpaid Members (23)</td>
+                                <td><span class="status-badge status-paid">Sent</span></td>
+                                <td>
+                                    <div class="action-icons">
+                                        <div class="action-icon" title="View">👁</div>
+                                        <div class="action-icon" title="Resend">🔄</div>
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Footer -->
+                <div class="footer">
+                    © 2025 Sunyani Municipal Welfare System • Version 2.0
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Reminder Modal -->
+    <div id="reminder-modal" class="modal-overlay" style="display: none;">
+        <div class="modal">
+            <div class="modal-header">
+                <h3>SUNYANI MUNICIPAL WELFARE</h3>
+                <button class="modal-close" id="close-reminder-btn">×</button>
+            </div>
+            <div class="modal-body">
+                <div style="text-align: center; margin-bottom: 20px;">
+                    <div style="font-size: 48px; margin-bottom: 10px;">🔔</div>
+                    <h4 style="color: var(--primary); margin-bottom: 15px;">Monthly Contribution Reminder</h4>
+                </div>
+                <div style="background: var(--secondary); padding: 20px; border-radius: var(--radius-sm); margin-bottom: 20px;">
+                    <p style="margin-bottom: 10px;">Dear valued member,</p>
+                    <p style="margin-bottom: 10px;">This is a friendly reminder that your monthly contribution of <strong>₵100</strong> for <strong>March 2025</strong> is due.</p>
+                    <p style="margin-bottom: 10px;">Please make your payment by the end of the month to maintain your active membership status.</p>
+                    <p>Thank you for your continued support and cooperation.</p>
+                </div>
+                <div style="text-align: center; color: var(--text-light); font-size: 13px;">
+                    This is a test reminder. In production, this will be sent to all members via SMS/Email.
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn" id="close-reminder-btn">Close Preview</button>
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        import './js/firebase.js';
+        import authManager from './js/auth.js';
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            // Update current date
+            const updateDateTime = () => {
+                const now = new Date();
+                const options = { 
+                    weekday: 'long', 
+                    year: 'numeric', 
+                    month: 'long', 
+                    day: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit'
+                };
+                document.getElementById('current-date').textContent = now.toLocaleDateString('en-US', options);
+            };
+            
+            updateDateTime();
+            setInterval(updateDateTime, 60000);
+
+            // Logout functionality
+            const logoutBtn = document.getElementById('logout-btn');
+            if (logoutBtn) {
+                logoutBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    authManager.logout();
+                });
+            }
+
+            // Test reminder functionality
+            const testReminderBtn = document.getElementById('test-reminder-btn');
+            const reminderModal = document.getElementById('reminder-modal');
+            const closeReminderBtn = document.getElementById('close-reminder-btn');
+
+            if (testReminderBtn) {
+                testReminderBtn.addEventListener('click', function() {
+                    reminderModal.style.display = 'flex';
+                });
+            }
+
+            if (closeReminderBtn) {
+                closeReminderBtn.addEventListener('click', function() {
+                    reminderModal.style.display = 'none';
+                });
+            }
+
+            // Form submission
+            const form = document.getElementById('reminder-settings-form');
+            if (form) {
+                form.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    authManager.showToast('Reminder settings saved successfully!', 'success');
+                });
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Sunyani Municipal Welfare System</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="login-container">
+        <div class="login-card">
+            <div class="login-header">
+                <div class="login-logo">
+                    <span>🏛️</span>
+                </div>
+                <h1>Sunyani Municipal Welfare</h1>
+                <p>Administrative Management System</p>
+            </div>
+            
+            <form id="login-form">
+                <div class="form-group">
+                    <label for="email">Administrator Email</label>
+                    <input 
+                        type="email" 
+                        id="email" 
+                        class="form-control" 
+                        placeholder="Enter admin email" 
+                        required
+                        autocomplete="username"
+                    >
+                </div>
+                
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input 
+                        type="password" 
+                        id="password" 
+                        class="form-control" 
+                        placeholder="Enter password" 
+                        required
+                        autocomplete="current-password"
+                    >
+                </div>
+                
+                <button type="submit" class="btn btn-block" id="login-btn">
+                    <span>🔐</span>
+                    Login to System
+                </button>
+            </form>
+            
+            <div style="text-align: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid var(--border);">
+                <p style="color: var(--text-light); font-size: 13px;">
+                    Sunyani Municipal Assembly Welfare Management System
+                </p>
+                <p style="color: var(--text-light); font-size: 12px; margin-top: 8px;">
+                    Version 2.0 • Secure Access Required
+                </p>
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        import authManager from './js/auth.js';
+        import './js/firebase.js';
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const loginForm = document.getElementById('login-form');
+            const loginBtn = document.getElementById('login-btn');
+            
+            // Auto-focus on email field
+            document.getElementById('email').focus();
+            
+            loginForm.addEventListener('submit', async function(e) {
+                e.preventDefault();
+                
+                const email = document.getElementById('email').value;
+                const password = document.getElementById('password').value;
+                
+                // Validate credentials
+                if (!email || !password) {
+                    authManager.showToast('Please enter both email and password', 'error');
+                    return;
+                }
+                
+                // Attempt login
+                const result = await authManager.login(email, password);
+                
+                if (result.success) {
+                    // Success - redirect will happen automatically via auth state listener
+                    console.log('Login successful, redirecting...');
+                }
+            });
+        });
+    </script>
+</body>
+</html>

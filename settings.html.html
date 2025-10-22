@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Settings - Sunyani Municipal Welfare System</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <h2>SUNYANI MUNICIPAL WELFARE</h2>
+            </div>
+            <ul class="sidebar-menu">
+                <li><a href="dashboard.html"><i>📊</i> <span>Dashboard</span></a></li>
+                <li><a href="members.html"><i>👥</i> <span>Members</span></a></li>
+                <li><a href="contributions.html"><i>💰</i> <span>Contributions</span></a></li>
+                <li><a href="withdrawals.html"><i>💸</i> <span>Withdrawals</span></a></li>
+                <li><a href="reminders.html"><i>🔔</i> <span>Reminders</span></a></li>
+                <li><a href="reports.html"><i>📈</i> <span>Reports</span></a></li>
+                <li><a href="settings.html" class="active"><i>⚙️</i> <span>Settings</span></a></li>
+                <li><a href="#" id="logout-btn"><i>🚪</i> <span>Logout</span></a></li>
+            </ul>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <div class="topbar">
+                <h1>
+                    <span>⚙️</span>
+                    System Settings
+                </h1>
+                <div class="user-menu">
+                    <span id="current-date">Loading...</span>
+                    <div class="user-info">
+                        <div class="user-avatar">A</div>
+                        <span class="user-email">admin@sma</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-area">
+                <!-- Organization Settings -->
+                <div class="form-container">
+                    <div class="form-section">
+                        <h3>Organization Settings</h3>
+                        <form id="organization-form">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="org-name">Organization Name</label>
+                                    <input type="text" id="org-name" class="form-control" value="Sunyani Municipal Welfare" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="org-address">Address</label>
+                                    <input type="text" id="org-address" class="form-control" value="Sunyani Municipal Assembly, Bono Region" required>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="org-phone">Phone Number</label>
+                                    <input type="tel" id="org-phone" class="form-control" value="+233 35 123 4567" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="org-email">Email</label>
+                                    <input type="email" id="org-email" class="form-control" value="welfare@sunyanimunicipal.gov.gh" required>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="org-logo">Organization Logo</label>
+                                <input type="file" id="org-logo" class="form-control" accept="image/*">
+                            </div>
+                            <button type="submit" class="btn">
+                                <span>💾</span>
+                                Save Organization Settings
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- Contribution Settings -->
+                    <div class="form-section">
+                        <h3>Contribution Settings</h3>
+                        <form id="contribution-settings-form">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="default-contribution">Default Monthly Contribution (₵)</label>
+                                    <input type="number" id="default-contribution" class="form-control" value="100" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="payment-deadline">Payment Deadline (Day of Month)</label>
+                                    <input type="number" id="payment-deadline" class="form-control" min="1" max="31" value="15" required>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="late-fee">Late Payment Fee (₵)</label>
+                                    <input type="number" id="late-fee" class="form-control" value="10">
+                                </div>
+                                <div class="form-group">
+                                    <label for="grace-period">Grace Period (Days)</label>
+                                    <input type="number" id="grace-period" class="form-control" value="7">
+                                </div>
+                            </div>
+                            <button type="submit" class="btn">
+                                <span>💾</span>
+                                Save Contribution Settings
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- User Profile -->
+                    <div class="form-section">
+                        <h3>User Profile</h3>
+                        <form id="profile-form">
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="user-name">Full Name</label>
+                                    <input type="text" id="user-name" class="form-control" value="Administrator" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="user-email">Email</label>
+                                    <input type="email" id="user-email" class="form-control" value="admin@sunyanimunicipal.gov.gh" required readonly>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="form-group">
+                                    <label for="user-phone">Phone Number</label>
+                                    <input type="tel" id="user-phone" class="form-control" value="+233 24 123 4567" required>
+                                </div>
+                                <div class="form-group">
+                                    <label for="user-role">Role</label>
+                                    <input type="text" id="user-role" class="form-control" value="System Administrator" readonly>
+                                </div>
+                            </div>
+                            <div class="form-group">
+                                <label for="user-password">Change Password</label>
+                                <input type="password" id="user-password" class="form-control" placeholder="Enter new password">
+                                <small style="color: var(--text-light); margin-top: 5px; display: block;">
+                                    Leave blank to keep current password
+                                </small>
+                            </div>
+                            <button type="submit" class="btn">
+                                <span>👤</span>
+                                Update Profile
+                            </button>
+                        </form>
+                    </div>
+
+                    <!-- System Actions -->
+                    <div class="form-section">
+                        <h3>System Actions</h3>
+                        <div class="action-buttons">
+                            <button type="button" class="btn btn-warning" id="backup-btn">
+                                <span>💾</span>
+                                Backup Data
+                            </button>
+                            <button type="button" class="btn btn-outline" id="system-log-btn">
+                                <span>📋</span>
+                                View System Logs
+                            </button>
+                            <button type="button" class="btn btn-outline" id="clear-cache-btn">
+                                <span>🧹</span>
+                                Clear Cache
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Footer -->
+                <div class="footer">
+                    © 2025 Sunyani Municipal Welfare System • Version 2.0
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        import './js/firebase.js';
+        import authManager from './js/auth.js';
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            // Update current date
+            const updateDateTime = () => {
+                const now = new Date();
+                const options = { 
+                    weekday: 'long', 
+                    year: 'numeric', 
+                    month: 'long', 
+                    day: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit'
+                };
+                document.getElementById('current-date').textContent = now.toLocaleDateString('en-US', options);
+            };
+            
+            updateDateTime();
+            setInterval(updateDateTime, 60000);
+
+            // Logout functionality
+            const logoutBtn = document.getElementById('logout-btn');
+            if (logoutBtn) {
+                logoutBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    authManager.logout();
+                });
+            }
+
+            // System actions
+            const backupBtn = document.getElementById('backup-btn');
+            const systemLogBtn = document.getElementById('system-log-btn');
+            const clearCacheBtn = document.getElementById('clear-cache-btn');
+
+            if (backupBtn) {
+                backupBtn.addEventListener('click', () => {
+                    authManager.showToast('Data backup initiated...', 'success');
+                });
+            }
+
+            if (systemLogBtn) {
+                systemLogBtn.addEventListener('click', () => {
+                    authManager.showToast('Opening system logs...', 'warning');
+                });
+            }
+
+            if (clearCacheBtn) {
+                clearCacheBtn.addEventListener('click', () => {
+                    authManager.showToast('Cache cleared successfully!', 'success');
+                });
+            }
+
+            // Form submissions
+            const forms = ['organization-form', 'contribution-settings-form', 'profile-form'];
+            forms.forEach(formId => {
+                const form = document.getElementById(formId);
+                if (form) {
+                    form.addEventListener('submit', (e) => {
+                        e.preventDefault();
+                        authManager.showToast('Settings saved successfully!', 'success');
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

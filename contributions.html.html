@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contributions - Sunyani Municipal Welfare System</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <div class="dashboard-container">
+        <!-- Sidebar -->
+        <div class="sidebar">
+            <div class="sidebar-header">
+                <h2>SUNYANI MUNICIPAL WELFARE</h2>
+            </div>
+            <ul class="sidebar-menu">
+                <li><a href="dashboard.html"><i>📊</i> <span>Dashboard</span></a></li>
+                <li><a href="members.html"><i>👥</i> <span>Members</span></a></li>
+                <li><a href="contributions.html" class="active"><i>💰</i> <span>Contributions</span></a></li>
+                <li><a href="withdrawals.html"><i>💸</i> <span>Withdrawals</span></a></li>
+                <li><a href="reminders.html"><i>🔔</i> <span>Reminders</span></a></li>
+                <li><a href="reports.html"><i>📈</i> <span>Reports</span></a></li>
+                <li><a href="settings.html"><i>⚙️</i> <span>Settings</span></a></li>
+                <li><a href="#" id="logout-btn"><i>🚪</i> <span>Logout</span></a></li>
+            </ul>
+        </div>
+
+        <!-- Main Content -->
+        <div class="main-content">
+            <div class="topbar">
+                <h1>
+                    <span>💰</span>
+                    Contributions Management
+                </h1>
+                <div class="user-menu">
+                    <span id="current-date">Loading...</span>
+                    <div class="user-info">
+                        <div class="user-avatar">A</div>
+                        <span class="user-email">admin@sma</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="content-area">
+                <!-- Add Contribution Form -->
+                <div class="form-container">
+                    <h3>Record New Contribution</h3>
+                    <form id="contribution-form">
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="member-select">Member *</label>
+                                <select id="member-select" class="form-control" required>
+                                    <option value="">Select Member</option>
+                                    <option value="SMW001">Kwame Mensah (SMW001)</option>
+                                    <option value="SMW002">Ama Serwaa (SMW002)</option>
+                                    <option value="SMW003">Kofi Asante (SMW003)</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="amount">Amount (₵) *</label>
+                                <input type="number" id="amount" class="form-control" placeholder="Enter amount" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="month">Month *</label>
+                                <select id="month" class="form-control" required>
+                                    <option value="">Select Month</option>
+                                    <option value="1">January</option>
+                                    <option value="2">February</option>
+                                    <option value="3">March</option>
+                                    <option value="4">April</option>
+                                    <option value="5">May</option>
+                                    <option value="6">June</option>
+                                    <option value="7">July</option>
+                                    <option value="8">August</option>
+                                    <option value="9">September</option>
+                                    <option value="10">October</option>
+                                    <option value="11">November</option>
+                                    <option value="12">December</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="year">Year *</label>
+                                <input type="number" id="year" class="form-control" value="2025" required>
+                            </div>
+                        </div>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="payment-method">Payment Method *</label>
+                                <select id="payment-method" class="form-control" required>
+                                    <option value="">Select Method</option>
+                                    <option value="cash">Cash</option>
+                                    <option value="mobile_money">Mobile Money</option>
+                                    <option value="bank_transfer">Bank Transfer</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="reference">Reference Number</label>
+                                <input type="text" id="reference" class="form-control" placeholder="Transaction reference">
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label for="notes">Notes</label>
+                            <textarea id="notes" class="form-control" rows="3" placeholder="Additional notes"></textarea>
+                        </div>
+                        <button type="submit" class="btn">
+                            <span>💾</span>
+                            Record Contribution
+                        </button>
+                    </form>
+                </div>
+
+                <!-- Contributions History -->
+                <div class="table-container">
+                    <div class="table-header">
+                        <div class="table-title">Contribution History</div>
+                        <div class="search-filter">
+                            <div class="search-box">
+                                <span class="search-icon">🔍</span>
+                                <input type="text" class="form-control" placeholder="Search contributions...">
+                            </div>
+                            <select class="form-control">
+                                <option>All Months</option>
+                                <option>January</option>
+                                <option>February</option>
+                                <option>March</option>
+                            </select>
+                        </div>
+                    </div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Date</th>
+                                <th>Member</th>
+                                <th>Amount</th>
+                                <th>Month</th>
+                                <th>Payment Method</th>
+                                <th>Reference</th>
+                                <th>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>2025-01-15</td>
+                                <td>Kwame Mensah</td>
+                                <td>₵ 100.00</td>
+                                <td>January 2025</td>
+                                <td>Mobile Money</td>
+                                <td>MM123456</td>
+                                <td><span class="status-badge status-paid">Verified</span></td>
+                            </tr>
+                            <tr>
+                                <td>2025-01-16</td>
+                                <td>Ama Serwaa</td>
+                                <td>₵ 100.00</td>
+                                <td>January 2025</td>
+                                <td>Cash</td>
+                                <td>-</td>
+                                <td><span class="status-badge status-paid">Verified</span></td>
+                            </tr>
+                            <tr>
+                                <td>2025-02-10</td>
+                                <td>Kofi Asante</td>
+                                <td>₵ 50.00</td>
+                                <td>February 2025</td>
+                                <td>Mobile Money</td>
+                                <td>MM789012</td>
+                                <td><span class="status-badge status-partial">Partial</span></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Footer -->
+                <div class="footer">
+                    © 2025 Sunyani Municipal Welfare System • Version 2.0
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="module">
+        import './js/firebase.js';
+        import authManager from './js/auth.js';
+        
+        document.addEventListener('DOMContentLoaded', function() {
+            // Update current date
+            const updateDateTime = () => {
+                const now = new Date();
+                const options = { 
+                    weekday: 'long', 
+                    year: 'numeric', 
+                    month: 'long', 
+                    day: 'numeric',
+                    hour: '2-digit',
+                    minute: '2-digit'
+                };
+                document.getElementById('current-date').textContent = now.toLocaleDateString('en-US', options);
+            };
+            
+            updateDateTime();
+            setInterval(updateDateTime, 60000);
+
+            // Logout functionality
+            const logoutBtn = document.getElementById('logout-btn');
+            if (logoutBtn) {
+                logoutBtn.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    authManager.logout();
+                });
+            }
+
+            // Form submission
+            const form = document.getElementById('contribution-form');
+            if (form) {
+                form.addEventListener('submit', (e) => {
+                    e.preventDefault();
+                    authManager.showToast('Contribution recorded successfully!', 'success');
+                    form.reset();
+                });
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,16 @@
+your-project-folder/
+├── css/
+│   └── style.css
+├── js/
+│   ├── firebase.js
+│   ├── auth.js
+│   ├── dashboard.js
+│   └── members.js
+├── index.html
+├── dashboard.html
+├── members.html
+├── contributions.html
+├── withdrawals.html
+├── reminders.html
+├── reports.html
+└── settings.html
