@@ -88,7 +88,7 @@
         <div class="modal">
             <div class="modal-header">
                 <h3>SUNYANI MUNICIPAL WELFARE</h3>
-                <button class="modal-close" id="cancel-member-btn">×</button>
+                <button class="modal-close" id="close-member-modal">×</button>
             </div>
             <div class="modal-body">
                 <h4 style="margin-bottom: 20px; color: var(--primary);">Add New Member</h4>
@@ -120,42 +120,49 @@
                 </form>
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-outline" id="cancel-member-btn">Cancel</button>
+                <button type="button" class="btn btn-outline" id="cancel-member-modal">Cancel</button>
                 <button type="button" class="btn" id="save-member-btn">Save Member</button>
             </div>
         </div>
     </div>
 
-    <!-- Firebase Script -->
     <script type="module">
-        import { database } from './js/firebase.js';
-        import { ref, push, onValue } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-database.js";
+        import { db } from './js/firebase.js';
+        import { ref, push, onValue } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-database.js";
 
         const modal = document.getElementById('add-member-modal');
         const addBtn = document.getElementById('add-member-btn');
-        const cancelBtns = document.querySelectorAll('#cancel-member-btn');
+        const closeBtn = document.getElementById('close-member-modal');
+        const cancelBtn = document.getElementById('cancel-member-modal');
         const saveBtn = document.getElementById('save-member-btn');
         const tableBody = document.getElementById('members-body');
-        const refreshBtn = document.getElementById('refresh-btn');
 
         // 🟢 Open and close modal
-        addBtn.onclick = () => modal.style.display = 'flex';
-        cancelBtns.forEach(btn => btn.onclick = () => modal.style.display = 'none');
+        addBtn.addEventListener('click', () => {
+            modal.style.display = 'flex';
+            document.getElementById('member-id').value = generateMemberID();
+        });
 
-        // 🆔 Generate random Member ID
+        [closeBtn, cancelBtn].forEach(btn => {
+            btn.addEventListener('click', () => {
+                modal.style.display = 'none';
+            });
+        });
+
+        // 🆔 Generate unique ID
         function generateMemberID() {
             return "SMW" + Math.floor(Math.random() * 10000).toString().padStart(4, "0");
         }
 
-        // 🧾 Save new member to Firebase
-        saveBtn.onclick = async () => {
+        // 💾 Save Member
+        saveBtn.addEventListener('click', async () => {
             const name = document.getElementById('member-name').value.trim();
             const phone = document.getElementById('member-phone').value.trim();
             const joinDate = document.getElementById('member-join-date').value;
             const contribution = document.getElementById('member-contribution').value;
 
             if (!name || !phone || !joinDate || !contribution) {
-                alert("⚠️ Please fill all required fields");
+                alert("Please fill all required fields");
                 return;
             }
 
@@ -164,26 +171,25 @@
                 phone,
                 joinDate,
                 contribution: parseFloat(contribution),
-                memberId: generateMemberID(),
+                memberId: document.getElementById('member-id').value,
                 status: "Active",
                 createdAt: new Date().toISOString()
             };
 
             try {
-                const membersRef = ref(database, "members");
+                const membersRef = ref(db, "members");
                 await push(membersRef, memberData);
                 alert("✅ Member registered successfully!");
                 modal.style.display = "none";
                 document.getElementById("add-member-form").reset();
-                loadMembers();
             } catch (err) {
                 alert("❌ Error saving member: " + err.message);
             }
-        };
+        });
 
-        // 📋 Load members from Firebase Realtime Database
+        // 🔄 Load members
         function loadMembers() {
-            const membersRef = ref(database, "members");
+            const membersRef = ref(db, "members");
             onValue(membersRef, (snapshot) => {
                 if (!snapshot.exists()) {
                     tableBody.innerHTML = "<tr><td colspan='6' style='text-align:center;'>No members found</td></tr>";
@@ -207,10 +213,6 @@
             });
         }
 
-        // 🔄 Refresh button manually reloads members
-        refreshBtn.onclick = loadMembers;
-
-        // 🕒 Load members when page is ready
         document.addEventListener('DOMContentLoaded', loadMembers);
     </script>
 </body>
