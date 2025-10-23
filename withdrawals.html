@@ -1,236 +1,212 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Withdrawals - Sunyani Municipal Welfare System</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Withdrawals - Sunyani Municipal Welfare System</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css">
 </head>
 <body>
-    <div class="dashboard-container">
-        <!-- Sidebar -->
-        <div class="sidebar">
-            <div class="sidebar-header">
-                <h2>SUNYANI MUNICIPAL WELFARE</h2>
-            </div>
-            <ul class="sidebar-menu">
-                <li><a href="dashboard.html"><i>📊</i> <span>Dashboard</span></a></li>
-                <li><a href="members.html"><i>👥</i> <span>Members</span></a></li>
-                <li><a href="contributions.html"><i>💰</i> <span>Contributions</span></a></li>
-                <li><a href="withdrawals.html" class="active"><i>💸</i> <span>Withdrawals</span></a></li>
-                <li><a href="reminders.html"><i>🔔</i> <span>Reminders</span></a></li>
-                <li><a href="reports.html"><i>📈</i> <span>Reports</span></a></li>
-                <li><a href="settings.html"><i>⚙️</i> <span>Settings</span></a></li>
-                <li><a href="#" id="logout-btn"><i>🚪</i> <span>Logout</span></a></li>
-            </ul>
-        </div>
-
-        <!-- Main Content -->
-        <div class="main-content">
-            <div class="topbar">
-                <h1>
-                    <span>💸</span>
-                    Withdrawals Management
-                </h1>
-                <div class="user-menu">
-                    <span id="current-date">Loading...</span>
-                    <div class="user-info">
-                        <div class="user-avatar">A</div>
-                        <span class="user-email">admin@sma</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="content-area">
-                <!-- Total Funds Card -->
-                <div class="card-container">
-                    <div class="card">
-                        <div class="card-header">
-                            <div class="card-title">Total Available Funds</div>
-                            <div class="card-icon">💰</div>
-                        </div>
-                        <div class="card-value" id="total-funds">₵ 0.00</div>
-                        <div class="card-growth">Available for withdrawals</div>
-                    </div>
-                </div>
-
-                <!-- Withdrawal Form -->
-                <div class="form-container">
-                    <h3>New Withdrawal Request</h3>
-                    <form id="withdrawal-form">
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="withdrawal-amount">Amount (₵) *</label>
-                                <input type="number" id="withdrawal-amount" class="form-control" placeholder="Enter amount" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="withdrawal-reason">Reason *</label>
-                                <select id="withdrawal-reason" class="form-control" required>
-                                    <option value="">Select Reason</option>
-                                    <option value="emergency">Emergency Support</option>
-                                    <option value="event">Community Event</option>
-                                    <option value="maintenance">System Maintenance</option>
-                                    <option value="other">Other</option>
-                                </select>
-                            </div>
-                        </div>
-                        <div class="form-row">
-                            <div class="form-group">
-                                <label for="authorized-by">Authorized By *</label>
-                                <input type="text" id="authorized-by" class="form-control" placeholder="Enter authorizer name" required>
-                            </div>
-                            <div class="form-group">
-                                <label for="withdrawal-date">Date *</label>
-                                <input type="date" id="withdrawal-date" class="form-control" required>
-                            </div>
-                        </div>
-                        <div class="form-group">
-                            <label for="withdrawal-notes">Additional Notes</label>
-                            <textarea id="withdrawal-notes" class="form-control" rows="3" placeholder="Enter additional notes"></textarea>
-                        </div>
-                        <button type="submit" class="btn">
-                            <span>📋</span>
-                            Submit Withdrawal Request
-                        </button>
-                    </form>
-                </div>
-
-                <!-- Withdrawal History -->
-                <div class="table-container">
-                    <div class="table-header">
-                        <div class="table-title">Withdrawal History</div>
-                        <div class="search-filter">
-                            <div class="search-box">
-                                <span class="search-icon">🔍</span>
-                                <input type="text" id="search-withdrawal" class="form-control" placeholder="Search withdrawals...">
-                            </div>
-                        </div>
-                    </div>
-                    <table id="withdrawal-table">
-                        <thead>
-                            <tr>
-                                <th>Date</th>
-                                <th>Reason</th>
-                                <th>Amount</th>
-                                <th>Authorized By</th>
-                                <th>Status</th>
-                            </tr>
-                        </thead>
-                        <tbody id="withdrawal-body">
-                            <tr><td colspan="5" style="text-align:center;">Loading...</td></tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                <!-- Footer -->
-                <div class="footer">
-                    © 2025 Sunyani Municipal Welfare System • Version 2.0
-                </div>
-            </div>
-        </div>
+  <div class="dashboard-container">
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <div class="sidebar-header">
+        <h2>SUNYANI MUNICIPAL WELFARE</h2>
+      </div>
+      <ul class="sidebar-menu">
+        <li><a href="dashboard.html"><i>📊</i> <span>Dashboard</span></a></li>
+        <li><a href="members.html"><i>👥</i> <span>Members</span></a></li>
+        <li><a href="contributions.html"><i>💰</i> <span>Contributions</span></a></li>
+        <li><a href="withdrawals.html" class="active"><i>💸</i> <span>Withdrawals</span></a></li>
+        <li><a href="reminders.html"><i>🔔</i> <span>Reminders</span></a></li>
+        <li><a href="reports.html"><i>📈</i> <span>Reports</span></a></li>
+        <li><a href="settings.html"><i>⚙️</i> <span>Settings</span></a></li>
+        <li><a href="#" id="logout-btn"><i>🚪</i> <span>Logout</span></a></li>
+      </ul>
     </div>
 
-    <script type="module">
-        import { db, ref, push, get, set, onValue } from './js/firebase.js';
-        import authManager from './js/auth.js';
+    <!-- Main Content -->
+    <div class="main-content">
+      <div class="topbar">
+        <h1><span>💸</span> Withdrawals Management</h1>
+        <div class="user-menu">
+          <span id="current-date">Loading...</span>
+          <div class="user-info">
+            <div class="user-avatar">A</div>
+            <span class="user-email">admin@sma</span>
+          </div>
+        </div>
+      </div>
 
-        document.addEventListener('DOMContentLoaded', () => {
-            const dateField = document.getElementById('withdrawal-date');
-            dateField.value = new Date().toISOString().split('T')[0];
-            const tableBody = document.getElementById('withdrawal-body');
-            const totalFundsEl = document.getElementById('total-funds');
-            let totalFunds = 0;
+      <div class="content-area">
+        <!-- Total Funds Card -->
+        <div class="card-container">
+          <div class="card">
+            <div class="card-header">
+              <div class="card-title">Total Available Funds</div>
+              <div class="card-icon">💰</div>
+            </div>
+            <div class="card-value" id="total-funds">₵ 0.00</div>
+            <div class="card-growth">Available for withdrawals</div>
+          </div>
+        </div>
 
-            const updateDateTime = () => {
-                const now = new Date();
-                const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: '2-digit', minute: '2-digit' };
-                document.getElementById('current-date').textContent = now.toLocaleDateString('en-US', options);
-            };
-            updateDateTime();
-            setInterval(updateDateTime, 60000);
+        <!-- Withdrawal Form -->
+        <div class="form-container">
+          <h3>New Withdrawal Request</h3>
+          <form id="withdrawal-form">
+            <div class="form-row">
+              <div class="form-group">
+                <label for="withdrawal-amount">Amount (₵) *</label>
+                <input type="number" id="withdrawal-amount" class="form-control" placeholder="Enter amount" required>
+              </div>
+              <div class="form-group">
+                <label for="withdrawal-reason">Reason *</label>
+                <select id="withdrawal-reason" class="form-control" required>
+                  <option value="">Select Reason</option>
+                  <option value="emergency">Emergency Support</option>
+                  <option value="event">Community Event</option>
+                  <option value="maintenance">System Maintenance</option>
+                  <option value="other">Other</option>
+                </select>
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="form-group">
+                <label for="authorized-by">Authorized By *</label>
+                <input type="text" id="authorized-by" class="form-control" placeholder="Enter authorizer name" required>
+              </div>
+              <div class="form-group">
+                <label for="withdrawal-date">Date *</label>
+                <input type="date" id="withdrawal-date" class="form-control" required>
+              </div>
+            </div>
+            <div class="form-group">
+              <label for="withdrawal-notes">Additional Notes</label>
+              <textarea id="withdrawal-notes" class="form-control" rows="3" placeholder="Enter additional notes"></textarea>
+            </div>
+            <button type="submit" class="btn">
+              <span>📋</span> Submit Withdrawal Request
+            </button>
+          </form>
+        </div>
 
-            // Fetch total funds (contributions - withdrawals)
-            const updateFundsDisplay = async () => {
-                const contribSnap = await get(ref(db, 'contributions'));
-                const withdrawSnap = await get(ref(db, 'withdrawals'));
-                let totalContrib = 0, totalWithdraw = 0;
+        <!-- Withdrawal History -->
+        <div class="table-container">
+          <div class="table-header">
+            <div class="table-title">Withdrawal History</div>
+          </div>
+          <table>
+            <thead>
+              <tr>
+                <th>Date</th>
+                <th>Reason</th>
+                <th>Amount</th>
+                <th>Authorized By</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody id="withdrawal-history"></tbody>
+          </table>
+        </div>
 
-                if (contribSnap.exists()) {
-                    Object.values(contribSnap.val()).forEach(c => {
-                        totalContrib += Number(c.amount || 0);
-                    });
-                }
-                if (withdrawSnap.exists()) {
-                    Object.values(withdrawSnap.val()).forEach(w => {
-                        totalWithdraw += Number(w.amount || 0);
-                    });
-                }
+        <!-- Footer -->
+        <div class="footer">
+          © 2025 Sunyani Municipal Welfare System • Version 2.0
+        </div>
+      </div>
+    </div>
+  </div>
 
-                totalFunds = totalContrib - totalWithdraw;
-                totalFundsEl.textContent = `₵ ${totalFunds.toFixed(2)}`;
-            };
-            updateFundsDisplay();
+  <script type="module">
+    import { db, ref, push, set, get, child, onValue } from './js/firebase.js';
+    import authManager from './js/auth.js';
 
-            // Load withdrawal history
-            onValue(ref(db, 'withdrawals'), (snapshot) => {
-                tableBody.innerHTML = '';
-                if (!snapshot.exists()) {
-                    tableBody.innerHTML = '<tr><td colspan="5" style="text-align:center;">No withdrawals yet</td></tr>';
-                    return;
-                }
-                const data = snapshot.val();
-                Object.values(data).reverse().forEach((item) => {
-                    const row = `
-                        <tr>
-                            <td>${item.date}</td>
-                            <td>${item.reason}</td>
-                            <td>₵ ${item.amount}</td>
-                            <td>${item.authorizedBy}</td>
-                            <td><span class="status-badge status-paid">${item.status || 'Approved'}</span></td>
-                        </tr>`;
-                    tableBody.insertAdjacentHTML('beforeend', row);
-                });
-            });
+    document.addEventListener('DOMContentLoaded', async () => {
+      // Date display
+      const now = new Date();
+      const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+      document.getElementById('current-date').textContent = now.toLocaleDateString('en-US', options);
 
-            // Handle new withdrawal submission
-            document.getElementById('withdrawal-form').addEventListener('submit', async (e) => {
-                e.preventDefault();
+      document.getElementById('withdrawal-date').value = new Date().toISOString().split('T')[0];
 
-                const amount = Number(document.getElementById('withdrawal-amount').value);
-                const reason = document.getElementById('withdrawal-reason').value;
-                const authorizedBy = document.getElementById('authorized-by').value;
-                const date = document.getElementById('withdrawal-date').value;
-                const notes = document.getElementById('withdrawal-notes').value;
+      const logoutBtn = document.getElementById('logout-btn');
+      logoutBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        authManager.logout();
+      });
 
-                if (amount > totalFunds) {
-                    authManager.showToast('Insufficient funds for this withdrawal!', 'error');
-                    return;
-                }
+      const totalFundsDisplay = document.getElementById('total-funds');
+      const historyBody = document.getElementById('withdrawal-history');
 
-                const newRef = push(ref(db, 'withdrawals'));
-                await set(newRef, {
-                    amount,
-                    reason,
-                    authorizedBy,
-                    date,
-                    notes,
-                    status: 'Approved',
-                    createdAt: new Date().toISOString()
-                });
+      let totalFunds = 0;
 
-                authManager.showToast('Withdrawal recorded successfully!', 'success');
-                e.target.reset();
-                document.getElementById('withdrawal-date').value = new Date().toISOString().split('T')[0];
-                updateFundsDisplay();
-            });
-
-            // Logout
-            document.getElementById('logout-btn').addEventListener('click', (e) => {
-                e.preventDefault();
-                authManager.logout();
-            });
+      // ✅ Fetch total contributions
+      const contribRef = ref(db, 'contributions');
+      onValue(contribRef, (snapshot) => {
+        let sum = 0;
+        snapshot.forEach((childSnap) => {
+          const data = childSnap.val();
+          if (data.amount) sum += parseFloat(data.amount);
         });
-    </script>
+        totalFunds = sum;
+        totalFundsDisplay.textContent = `₵ ${totalFunds.toLocaleString(undefined, { minimumFractionDigits: 2 })}`;
+      });
+
+      // ✅ Display withdrawal history
+      const withdrawalsRef = ref(db, 'withdrawals');
+      onValue(withdrawalsRef, (snapshot) => {
+        historyBody.innerHTML = '';
+        snapshot.forEach((childSnap) => {
+          const w = childSnap.val();
+          const row = `
+            <tr>
+              <td>${w.date}</td>
+              <td>${w.reason}</td>
+              <td>₵ ${parseFloat(w.amount).toLocaleString()}</td>
+              <td>${w.authorizedBy}</td>
+              <td><span class="status-badge status-paid">Approved</span></td>
+            </tr>
+          `;
+          historyBody.innerHTML += row;
+        });
+      });
+
+      // ✅ Save new withdrawal
+      const form = document.getElementById('withdrawal-form');
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        const amount = parseFloat(document.getElementById('withdrawal-amount').value);
+        const reason = document.getElementById('withdrawal-reason').value;
+        const authorizedBy = document.getElementById('authorized-by').value;
+        const date = document.getElementById('withdrawal-date').value;
+        const notes = document.getElementById('withdrawal-notes').value;
+
+        if (amount > totalFunds) {
+          authManager.showToast('Insufficient funds available!', 'error');
+          return;
+        }
+
+        try {
+          await push(ref(db, 'withdrawals'), {
+            amount,
+            reason,
+            authorizedBy,
+            date,
+            notes,
+            status: 'Approved',
+            timestamp: Date.now(),
+          });
+          authManager.showToast('Withdrawal recorded successfully!', 'success');
+          form.reset();
+          document.getElementById('withdrawal-date').value = new Date().toISOString().split('T')[0];
+        } catch (error) {
+          console.error(error);
+          authManager.showToast('Error saving withdrawal.', 'error');
+        }
+      });
+    });
+  </script>
 </body>
 </html>
