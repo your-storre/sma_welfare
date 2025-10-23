@@ -1,10 +1,10 @@
-// Import the functions you need from the Firebase SDKs
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
-import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-analytics.js";
-import { getFirestore } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
-import { getAuth, signInWithEmailAndPassword, signOut } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+// ✅ Import Firebase SDKs
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-app.js";
+import { getAnalytics } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-analytics.js";
+import { getDatabase } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-database.js";
+import { getAuth, signInWithEmailAndPassword, signOut, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.12.3/firebase-auth.js";
 
-// Your web app's Firebase configuration
+// ✅ Your Firebase configuration
 const firebaseConfig = {
     apiKey: "AIzaSyCWxFyiUQlNw7otVxGJ1kOo6DZdq72inAE",
     authDomain: "sms-wellfare-project.firebaseapp.com",
@@ -16,43 +16,40 @@ const firebaseConfig = {
     measurementId: "G-L93NTP1QDS"
 };
 
-// Initialize Firebase
-let app;
-let auth;
-let db;
-let analytics;
+// ✅ Initialize Firebase
+let app, auth, db, analytics;
 
 try {
     app = initializeApp(firebaseConfig);
     auth = getAuth(app);
-    db = getFirestore(app);
+    db = getDatabase(app); // ✅ Correct — use Realtime Database
     analytics = getAnalytics(app);
-    console.log('✅ Firebase initialized successfully');
+    console.log("✅ Firebase initialized successfully");
 } catch (error) {
-    console.error('❌ Firebase initialization error:', error);
+    console.error("❌ Firebase initialization error:", error);
 }
 
-// Default admin credentials
+// ✅ Default admin credentials
 const ADMIN_CREDENTIALS = {
     email: "Admin@sma",
     password: "Admin2025"
 };
 
-// Authentication functions
+// ✅ Authentication functions
 const authService = {
     async login(email, password) {
         try {
-            // Check for default admin credentials first
+            // Allow default admin login (local)
             if (email === ADMIN_CREDENTIALS.email && password === ADMIN_CREDENTIALS.password) {
                 const mockUser = {
-                    uid: 'admin-001',
+                    uid: "admin-001",
                     email: ADMIN_CREDENTIALS.email,
-                    displayName: 'System Administrator'
+                    displayName: "System Administrator"
                 };
                 return { success: true, user: mockUser };
             }
 
-            // If not admin credentials, try Firebase auth
+            // Otherwise, sign in using Firebase Auth
             const userCredential = await signInWithEmailAndPassword(auth, email, password);
             return { success: true, user: userCredential.user };
         } catch (error) {
@@ -62,9 +59,7 @@ const authService = {
 
     async logout() {
         try {
-            if (auth.currentUser) {
-                await signOut(auth);
-            }
+            await signOut(auth);
             return { success: true };
         } catch (error) {
             return { success: false, error: error.message };
@@ -76,9 +71,9 @@ const authService = {
     },
 
     onAuthStateChanged(callback) {
-        return auth.onAuthStateChanged(callback);
+        return onAuthStateChanged(auth, callback);
     }
 };
 
-// Export services
-export { authService, ADMIN_CREDENTIALS, app, auth, db };
+// ✅ Export everything needed
+export { app, auth, db, analytics, authService, ADMIN_CREDENTIALS };
