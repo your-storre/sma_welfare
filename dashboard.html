@@ -1,173 +1,198 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard - Sunyani Municipal Welfare System</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard - Sunyani Municipal Welfare System</title>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap"
+    rel="stylesheet"
+  />
+  <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
-    <div class="dashboard-container">
-        <!-- Sidebar -->
-        <div class="sidebar">
-            <div class="sidebar-header">
-                <h2>SUNYANI MUNICIPAL WELFARE</h2>
-            </div>
-            <ul class="sidebar-menu">
-                <li><a href="dashboard.html" class="active"><i>📊</i> <span>Dashboard</span></a></li>
-                <li><a href="members.html"><i>👥</i> <span>Members</span></a></li>
-                <li><a href="contributions.html"><i>💰</i> <span>Contributions</span></a></li>
-                <li><a href="withdrawals.html"><i>💸</i> <span>Withdrawals</span></a></li>
-                <li><a href="reminders.html"><i>🔔</i> <span>Reminders</span></a></li>
-                <li><a href="reports.html"><i>📈</i> <span>Reports</span></a></li>
-                <li><a href="settings.html"><i>⚙️</i> <span>Settings</span></a></li>
-                <li><a href="#" id="logout-btn"><i>🚪</i> <span>Logout</span></a></li>
-            </ul>
-        </div>
-
-        <!-- Main Content -->
-        <div class="main-content">
-            <div class="topbar">
-                <h1>
-                    <span>📊</span>
-                    Dashboard Overview
-                </h1>
-                <div class="user-menu">
-                    <span id="current-date">Loading...</span>
-                    <div class="user-info">
-                        <div class="user-avatar">A</div>
-                        <span class="user-email">admin@sma</span>
-                    </div>
-                </div>
-            </div>
-
-            <div class="content-area">
-                <!-- Summary Cards -->
-                <div class="card-container">
-                    <div class="card">
-                        <div class="card-header">
-                            <div class="card-title">Total Members</div>
-                            <div class="card-icon">👥</div>
-                        </div>
-                        <div class="card-value">142</div>
-                        <div class="card-growth">+5 this month</div>
-                    </div>
-                    <div class="card">
-                        <div class="card-header">
-                            <div class="card-title">Total Funds</div>
-                            <div class="card-icon">💰</div>
-                        </div>
-                        <div class="card-value">₵ 45,280.00</div>
-                        <div class="card-growth">+₵ 2,500 this month</div>
-                    </div>
-                    <div class="card">
-                        <div class="card-header">
-                            <div class="card-title">Unpaid Contributors</div>
-                            <div class="card-icon">❌</div>
-                        </div>
-                        <div class="card-value">23</div>
-                        <div class="card-growth">16% of total</div>
-                    </div>
-                    <div class="card">
-                        <div class="card-header">
-                            <div class="card-title">Last Withdrawal</div>
-                            <div class="card-icon">💸</div>
-                        </div>
-                        <div class="card-value">₵ 5,000.00</div>
-                        <div class="card-growth">2 weeks ago</div>
-                    </div>
-                </div>
-
-                <!-- Chart Placeholder -->
-                <div class="chart-placeholder">
-                    <i>📈</i>
-                    <p>Monthly Contributions Chart</p>
-                    <small>Chart.js integration will display here</small>
-                </div>
-
-                <!-- Action Buttons -->
-                <div class="action-buttons">
-                    <a href="members.html?action=add" class="btn">
-                        <span>➕</span>
-                        Add New Member
-                    </a>
-                    <a href="contributions.html?action=add" class="btn">
-                        <span>💰</span>
-                        Record Contribution
-                    </a>
-                    <a href="reports.html" class="btn btn-outline">
-                        <span>📊</span>
-                        Generate Reports
-                    </a>
-                </div>
-
-                <!-- Recent Activity Table -->
-                <div class="table-container">
-                    <div class="table-header">
-                        <div class="table-title">Recent Contributions</div>
-                        <div class="search-filter">
-                            <div class="search-box">
-                                <span class="search-icon">🔍</span>
-                                <input type="text" class="form-control" placeholder="Search contributions...">
-                            </div>
-                        </div>
-                    </div>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Member</th>
-                                <th>Amount</th>
-                                <th>Month</th>
-                                <th>Payment Method</th>
-                                <th>Status</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>Kwame Mensah</td>
-                                <td>₵ 100.00</td>
-                                <td>January 2025</td>
-                                <td>Mobile Money</td>
-                                <td><span class="status-badge status-paid">Paid</span></td>
-                            </tr>
-                            <tr>
-                                <td>Ama Serwaa</td>
-                                <td>₵ 100.00</td>
-                                <td>January 2025</td>
-                                <td>Cash</td>
-                                <td><span class="status-badge status-paid">Paid</span></td>
-                            </tr>
-                            <tr>
-                                <td>Kofi Asante</td>
-                                <td>₵ 50.00</td>
-                                <td>January 2025</td>
-                                <td>Mobile Money</td>
-                                <td><span class="status-badge status-partial">Partial</span></td>
-                            </tr>
-                            <tr>
-                                <td>Yaw Boateng</td>
-                                <td>₵ 100.00</td>
-                                <td>December 2024</td>
-                                <td>Bank Transfer</td>
-                                <td><span class="status-badge status-paid">Paid</span></td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                <!-- Footer -->
-                <div class="footer">
-                    © 2025 Sunyani Municipal Welfare System • Version 2.0
-                </div>
-            </div>
-        </div>
+  <div class="dashboard-container">
+    <!-- Sidebar -->
+    <div class="sidebar">
+      <div class="sidebar-header">
+        <h2>SUNYANI MUNICIPAL WELFARE</h2>
+      </div>
+      <ul class="sidebar-menu">
+        <li><a href="dashboard.html" class="active"><i>📊</i> <span>Dashboard</span></a></li>
+        <li><a href="members.html"><i>👥</i> <span>Members</span></a></li>
+        <li><a href="contributions.html"><i>💰</i> <span>Contributions</span></a></li>
+        <li><a href="withdrawals.html"><i>💸</i> <span>Withdrawals</span></a></li>
+        <li><a href="reminders.html"><i>🔔</i> <span>Reminders</span></a></li>
+        <li><a href="reports.html"><i>📈</i> <span>Reports</span></a></li>
+        <li><a href="settings.html"><i>⚙️</i> <span>Settings</span></a></li>
+        <li><a href="#" id="logout-btn"><i>🚪</i> <span>Logout</span></a></li>
+      </ul>
     </div>
 
-    <script type="module">
-        import './js/firebase.js';
-        import authManager from './js/auth.js';
-        import './js/dashboard.js';
-    </script>
+    <!-- Main Content -->
+    <div class="main-content">
+      <div class="topbar">
+        <h1><span>📊</span> Dashboard Overview</h1>
+        <div class="user-menu">
+          <span id="current-date">Loading...</span>
+          <div class="user-info">
+            <div class="user-avatar">A</div>
+            <span class="user-email">admin@sma</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="content-area">
+        <!-- Summary Cards -->
+        <div class="card-container">
+          <div class="card">
+            <div class="card-header">
+              <div class="card-title">Total Members</div>
+              <div class="card-icon">👥</div>
+            </div>
+            <div id="total-members" class="card-value">Loading...</div>
+            <div class="card-growth">Realtime count</div>
+          </div>
+          <div class="card">
+            <div class="card-header">
+              <div class="card-title">Total Funds</div>
+              <div class="card-icon">💰</div>
+            </div>
+            <div id="total-funds" class="card-value">Loading...</div>
+            <div class="card-growth">Updated from contributions</div>
+          </div>
+          <div class="card">
+            <div class="card-header">
+              <div class="card-title">Unpaid Contributors</div>
+              <div class="card-icon">❌</div>
+            </div>
+            <div id="unpaid-contributors" class="card-value">Loading...</div>
+            <div class="card-growth">Calculated monthly</div>
+          </div>
+          <div class="card">
+            <div class="card-header">
+              <div class="card-title">Last Withdrawal</div>
+              <div class="card-icon">💸</div>
+            </div>
+            <div id="last-withdrawal" class="card-value">Loading...</div>
+            <div class="card-growth">Most recent</div>
+          </div>
+        </div>
+
+        <!-- Chart Placeholder -->
+        <div class="chart-placeholder">
+          <i>📈</i>
+          <p>Monthly Contributions Chart</p>
+          <small>Chart.js integration will display here</small>
+        </div>
+
+        <!-- Action Buttons -->
+        <div class="action-buttons">
+          <a href="members.html?action=add" class="btn"><span>➕</span> Add New Member</a>
+          <a href="contributions.html?action=add" class="btn"><span>💰</span> Record Contribution</a>
+          <a href="reports.html" class="btn btn-outline"><span>📊</span> Generate Reports</a>
+        </div>
+
+        <!-- Recent Activity Table -->
+        <div class="table-container">
+          <div class="table-header">
+            <div class="table-title">Recent Contributions</div>
+            <div class="search-filter">
+              <div class="search-box">
+                <span class="search-icon">🔍</span>
+                <input
+                  type="text"
+                  class="form-control"
+                  placeholder="Search contributions..."
+                  id="search-box"
+                />
+              </div>
+            </div>
+          </div>
+          <table id="contributions-table">
+            <thead>
+              <tr>
+                <th>Member</th>
+                <th>Amount</th>
+                <th>Month</th>
+                <th>Payment Method</th>
+                <th>Status</th>
+              </tr>
+            </thead>
+            <tbody id="recent-contributions">
+              <tr><td colspan="5">Loading data...</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">© 2025 Sunyani Municipal Welfare System • Version 2.0</div>
+      </div>
+    </div>
+  </div>
+
+  <script type="module">
+    import { app } from './js/firebase.js';
+    import { getDatabase, ref, onValue } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js";
+
+    const db = getDatabase(app);
+
+    const totalMembersEl = document.getElementById("total-members");
+    const totalFundsEl = document.getElementById("total-funds");
+    const unpaidEl = document.getElementById("unpaid-contributors");
+    const lastWithdrawalEl = document.getElementById("last-withdrawal");
+    const recentContribEl = document.getElementById("recent-contributions");
+
+    // Show current date
+    document.getElementById("current-date").textContent = new Date().toDateString();
+
+    // Members count
+    const membersRef = ref(db, "members");
+    onValue(membersRef, snapshot => {
+      const members = snapshot.val() || {};
+      totalMembersEl.textContent = Object.keys(members).length;
+    });
+
+    // Total funds and recent contributions
+    const contribRef = ref(db, "contributions");
+    onValue(contribRef, snapshot => {
+      const contributions = snapshot.val() || {};
+      let total = 0;
+      let rows = "";
+
+      const entries = Object.values(contributions).reverse().slice(0, 10);
+      entries.forEach(contrib => {
+        total += Number(contrib.amount || 0);
+        rows += `
+          <tr>
+            <td>${contrib.memberName || "Unknown"}</td>
+            <td>₵ ${Number(contrib.amount || 0).toFixed(2)}</td>
+            <td>${contrib.month || "-"}</td>
+            <td>${contrib.method || "-"}</td>
+            <td><span class="status-badge status-paid">${contrib.status || "Paid"}</span></td>
+          </tr>
+        `;
+      });
+
+      totalFundsEl.textContent = "₵ " + total.toFixed(2);
+      recentContribEl.innerHTML = rows || "<tr><td colspan='5'>No contributions found</td></tr>";
+    });
+
+    // Last withdrawal
+    const withdrawRef = ref(db, "withdrawals");
+    onValue(withdrawRef, snapshot => {
+      const data = snapshot.val() || {};
+      const all = Object.values(data);
+      if (all.length > 0) {
+        const last = all[all.length - 1];
+        lastWithdrawalEl.textContent = `₵ ${Number(last.amount || 0).toFixed(2)}`;
+      } else {
+        lastWithdrawalEl.textContent = "₵ 0.00";
+      }
+    });
+
+    // Unpaid contributors placeholder (will compute properly later)
+    unpaidEl.textContent = "Coming soon";
+  </script>
 </body>
 </html>
